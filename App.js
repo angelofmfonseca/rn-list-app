@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Button, TextInput } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  TextInput,
+  ScrollView
+} from "react-native";
 
 export default function App() {
   const [enteredItem, setEnteredItem] = useState("");
@@ -25,13 +32,13 @@ export default function App() {
         ></TextInput>
         <Button title="ADD" onPress={handleAddItens} />
       </View>
-      <View>
+      <ScrollView>
         {itensList.map(item => (
           <View key={item} style={styles.list}>
             <Text style={styles.item}>{item}</Text>
           </View>
         ))}
-      </View>
+      </ScrollView>
     </View>
   );
 }
