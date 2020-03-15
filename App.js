@@ -5,7 +5,8 @@ import {
   View,
   Button,
   TextInput,
-  ScrollView
+  ScrollView,
+  FlatList
 } from "react-native";
 
 export default function App() {
@@ -17,7 +18,10 @@ export default function App() {
   };
 
   const handleAddItens = () => {
-    setItensList([...itensList, enteredItem]);
+    setItensList([
+      ...itensList,
+      { key: Math.random().toString(), value: enteredItem } // FlatList expects an array of objects
+    ]);
   };
 
   return (
@@ -32,13 +36,14 @@ export default function App() {
         ></TextInput>
         <Button title="ADD" onPress={handleAddItens} />
       </View>
-      <ScrollView>
-        {itensList.map(item => (
-          <View key={item} style={styles.list}>
-            <Text style={styles.item}>{item}</Text>
+      <FlatList
+        data={itensList} // FlatList expects an array of objects
+        renderItem={itemData => (
+          <View style={styles.list}>
+            <Text style={styles.item}>{itemData.item.value}</Text>
           </View>
-        ))}
-      </ScrollView>
+        )}
+      />
     </View>
   );
 }
