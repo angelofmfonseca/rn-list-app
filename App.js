@@ -5,13 +5,19 @@ import ListItem from "./components/ListItem";
 import ListInput from "./components/ListInput";
 
 const App = () => {
-  const [itensList, setItensList] = useState([]);
+  const [itemsList, setItemsList] = useState([]);
 
-  const handleAddItens = enteredItem => {
-    setItensList([
-      ...itensList,
-      { key: Math.random().toString(), value: enteredItem } // FlatList expects an array of objects
+  const handleAddItens = itemTitle => {
+    setItemsList(currentItems => [
+      ...currentItems,
+      { id: Math.random().toString(), value: itemTitle } // FlatList expects an array of objects
     ]);
+  };
+
+  const handleRemoveItem = itemId => {
+    setItemsList(currentItems => {
+      return currentItems.filter(item => item.id !== itemId);
+    });
   };
 
   return (
@@ -19,8 +25,15 @@ const App = () => {
       <Text style={styles.title}>Shop List</Text>
       <ListInput handleAddItens={handleAddItens} />
       <FlatList
-        data={itensList} // FlatList expects an array of objects
-        renderItem={itemData => <ListItem itemData={itemData.item.value} />}
+        keyExtractor={item => item.id}
+        data={itemsList} // FlatList expects an array of objects
+        renderItem={itemData => (
+          <ListItem
+            id={itemData.item.id}
+            itemData={itemData.item.value}
+            handleRemoveItem={handleRemoveItem}
+          />
+        )}
       />
     </View>
   );
