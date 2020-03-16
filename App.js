@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, FlatList } from "react-native";
+import { StyleSheet, Text, View, FlatList, Button } from "react-native";
 
 import ListItem from "./components/ListItem";
 import ListInput from "./components/ListInput";
 
 const App = () => {
   const [itemsList, setItemsList] = useState([]);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handleAddItens = itemTitle => {
     setItemsList(currentItems => [
@@ -20,10 +21,18 @@ const App = () => {
     });
   };
 
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
   return (
     <View style={styles.screen}>
+      <Button title="Add new item" onPress={showModal} />
       <Text style={styles.title}>Shop List</Text>
-      <ListInput handleAddItens={handleAddItens} />
+      <ListInput
+        isModalVisible={isModalVisible}
+        handleAddItens={handleAddItens}
+      />
       <FlatList
         keyExtractor={item => item.id}
         data={itemsList} // FlatList expects an array of objects
