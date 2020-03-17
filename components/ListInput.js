@@ -8,6 +8,11 @@ const ListInput = ({ handleAddItens, isModalVisible }) => {
     setEnteredItem(enteredText);
   };
 
+  const addItem = () => {
+    handleAddItens(enteredItem);
+    setEnteredItem("");
+  };
+
   return (
     <Modal visible={isModalVisible} animationType="slide">
       <View style={styles.inputContainer}>
@@ -17,7 +22,7 @@ const ListInput = ({ handleAddItens, isModalVisible }) => {
           onChangeText={handleTextChange}
           value={enteredItem}
         />
-        <Button title="ADD" onPress={() => handleAddItens(enteredItem)} />
+        <Button title="ADD" onPress={addItem} />
       </View>
     </Modal>
   );
