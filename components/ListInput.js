@@ -22,8 +22,14 @@ const ListInput = ({ handleAddItens, isModalVisible, cancelItemAddition }) => {
           onChangeText={handleTextChange}
           value={enteredItem}
         />
-        <Button title="ADD" onPress={addItem} />
-        <Button title="CANCEL" color="red" onPress={cancelItemAddition} />
+        <View style={styles.buttonContainer}>
+          <View style={styles.button}>
+            <Button title="ADD" onPress={addItem} />
+          </View>
+          <View style={styles.button}>
+            <Button title="CANCEL" color="red" onPress={cancelItemAddition} />
+          </View>
+        </View>
       </View>
     </Modal>
   );
@@ -38,10 +44,18 @@ const styles = StyleSheet.create({
   input: {
     borderBottomWidth: 1,
     borderBottomColor: "#aaa",
-    padding: 5,
-    marginBottom: 10,
+    padding: 10,
+    marginBottom: 20,
     width: "80%",
     fontSize: 16
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "60%"
+  },
+  button: {
+    width: "40%"
   }
 });
 
