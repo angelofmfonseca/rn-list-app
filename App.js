@@ -13,6 +13,7 @@ const App = () => {
       ...currentItems,
       { id: Math.random().toString(), value: itemTitle } // FlatList expects an array of objects
     ]);
+    setIsModalVisible(false);
   };
 
   const handleRemoveItem = itemId => {
