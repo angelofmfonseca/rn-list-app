@@ -22,17 +22,22 @@ const App = () => {
     });
   };
 
-  const showModal = () => {
+  const showAddModal = () => {
     setIsModalVisible(true);
+  };
+
+  const cancelItemAddition = () => {
+    setIsModalVisible(false);
   };
 
   return (
     <View style={styles.screen}>
-      <Button title="Add new item" onPress={showModal} />
+      <Button title="Add new item" onPress={showAddModal} />
       <Text style={styles.title}>Shop List</Text>
       <ListInput
         isModalVisible={isModalVisible}
         handleAddItens={handleAddItens}
+        cancelItemAddition={cancelItemAddition}
       />
       <FlatList
         keyExtractor={item => item.id}

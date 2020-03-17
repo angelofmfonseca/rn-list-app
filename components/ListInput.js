@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Modal, StyleSheet, TextInput, View } from "react-native";
 
-const ListInput = ({ handleAddItens, isModalVisible }) => {
+const ListInput = ({ handleAddItens, isModalVisible, cancelItemAddition }) => {
   const [enteredItem, setEnteredItem] = useState("");
 
   const handleTextChange = enteredText => {
@@ -23,6 +23,7 @@ const ListInput = ({ handleAddItens, isModalVisible }) => {
           value={enteredItem}
         />
         <Button title="ADD" onPress={addItem} />
+        <Button title="CANCEL" color="red" onPress={cancelItemAddition} />
       </View>
     </Modal>
   );
